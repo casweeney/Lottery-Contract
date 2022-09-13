@@ -19,8 +19,6 @@ const ACCOUNT_PRIVATE_KEY2 = process.env.ACCOUNT_PRIVATE_KEY2
 
 const API_TOKEN = process.env.API_TOKEN;
 
-const POLYGONSCAN_KEY = process.env.POLYGONSCAN_KEY;
-
 module.exports = {
   solidity: "0.8.9",
   networks: {
@@ -47,9 +45,7 @@ module.exports = {
     }
   },
   etherscan: {
-    apiKey: {
-      polygonMumbai: POLYGONSCAN_KEY,
-    },
+    apiKey: API_TOKEN
   },
   lockGasLimit: 200000000000,
   gasPrice: 10000000000,

@@ -2,14 +2,14 @@
 pragma solidity ^0.8.4;
 
 contract LotteryNoVRF {
-    uint entryFee;
-    uint maxPlayers;
-    bool gameStarted;
-    uint gameId;
+    uint public entryFee;
+    uint public maxPlayers;
+    bool public gameStarted;
+    uint public gameId;
 
     address payable[] public players;
 
-    address owner;
+    address public owner;
 
     constructor() {
         owner = msg.sender;
@@ -58,5 +58,11 @@ contract LotteryNoVRF {
 
     function getContractBal() external view returns (uint) {
         return address(this).balance;
+    }
+
+    function withdraw() external onlyOwner {
+        require(address(this).balance > 0, "no funds in contract");
+
+        payable(msg.sender).transfer(address(this).balance);
     }
 }
